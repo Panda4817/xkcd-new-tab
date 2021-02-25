@@ -1,0 +1,29 @@
+{
+    "name": "xkcd new tab",
+    "version": "1.0",
+    "description": "xkcd themed new tab for xkcd fans, which displays a random xkcd comic, greets you depend on local time, displays the date, has access to most visited sites and bookmarks.",
+    "chrome_url_overrides": {
+        "newtab": "newTab.html"
+    },
+    "permissions": [
+        "bookmarks",
+        "topSites"
+    ],
+    "action": {
+        "default_icon": {
+            "16": "images/icon16.png",
+            "32": "images/icon32.png",
+            "48": "images/icon48.png",
+            "128": "images/icon128.png"
+        },
+        "default_title": "xkcd new tab",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "manifest_version": 3
+}
