@@ -95,10 +95,21 @@ function greeting() {
       return "Evening"
 }
 
+const getNews = () => {
+  const newsUrl = 'https://panda-newsapi.netlify.app/.netlify/functions/getNews';
+  fetch(newsUrl, {method: 'post'})
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    })
+    .catch(err => console.log(err));
+}
+
 ready(() => {
   setComic();
   const d = new Date()
   date.innerHTML = `Good ${greeting()}, Today is ${formatDate(d)}`;
   chrome.bookmarks.getTree(nodes =>displayBookmarks(nodes));
   chrome.topSites.get(mostVisited => displayMostVisited(mostVisited));
+  getNews();
 });
