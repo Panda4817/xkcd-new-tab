@@ -3,8 +3,9 @@ const title = pageBody.querySelector(".comic-title");
 const main = pageBody.querySelector(".comic-img");
 const footer = pageBody.querySelector(".comic-text")
 const date = pageBody.querySelector(".date")
-const bookmarkList = pageBody.querySelector(".links")
-const topSites = pageBody.querySelector(".sites-container")
+const bookmarkList = pageBody.querySelector(".bookmarkslist")
+const topSites = pageBody.querySelector(".sites")
+const headlines = pageBody.querySelector(".headlines")
 
 const ready = (callback) => {
   if (document.readyState != "loading") callback();
@@ -37,15 +38,15 @@ const formatDate = (d) => {
 
 const setComic = () => {
     const firstNum = 1;
-    const currentUrl = "https://getxkcd.now.sh/api/comic?num=latest";
-    fetch(currentUrl)
+    const currentUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic";
+    fetch(currentUrl, {method: 'post'})
       .then(response => response.json())
       .then(data => {
         console.log(data)
         const lastNum = parseInt(data.num);
         const randNum = Math.floor(Math.random() * ((lastNum + 1) - firstNum)) + firstNum;
-        const specificUrl = "https://getxkcd.now.sh/api/comic?num=" + randNum
-        fetch(specificUrl)
+        const specificUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic?num=" +  randNum;
+        fetch(specificUrl, {method: 'post'})
           .then(response => response.json())
           .then(data => {
             console.log(data)
@@ -79,7 +80,7 @@ const displayBookmarks = (nodes) => {
 
 const displayMostVisited = (arr) => {
   const sites = arr.map(site => {
-    return `<a class="btn" href="${site.url}" target="_blank">${site.title}</a>`;
+    return `<li><a class="btn" href="${site.url}" target="_blank">${site.title}</a></li>`;
   }).join('');
   topSites.innerHTML = sites;
 }
@@ -96,13 +97,23 @@ function greeting() {
 }
 
 const getNews = () => {
-  const newsUrl = 'https://panda-newsapi.netlify.app/.netlify/functions/getNews';
-  fetch(newsUrl, {method: 'post'})
+  fetch('https://extreme-ip-lookup.com/json/')
     .then(res => res.json())
-    .then(data => {
-        console.log(data)
+    .then(response => {
+      console.log("Country: ", response.countryCode);
+      const newsUrl = 'https://panda-serverless-api.netlify.app/.netlify/functions/getNews?code=' + response.countryCode;
+      fetch(newsUrl, {method: 'post'})
+        .then(res => res.json())
+        .then(data => {
+            const headlinesList = data.map(news => {
+              return `<a class="ticker-item" href="${news.url}" target="_blank">${news.title}</a>`;
+            }).join("");
+            headlines.innerHTML = headlinesList;
+        })
+        .catch(err => console.log(err));
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+  
 }
 
 ready(() => {

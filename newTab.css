@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-
 body {
     background-image: url('/images/background.jpg');
     background-repeat: repeat;
-    background-size: 50%;
+    background-size: 30%;
     font-family: 'Poiret One', cursive;
     color: white;
     text-align: center;
@@ -12,26 +11,100 @@ body {
 header {
     background: rgba(0, 0, 0, 0.7);
     border: 2px solid white;
-    border-radius: 5px; 
+    border-radius: 5px;
+    margin: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.masonary {
+    column-count: 2;
+    height: fit-content;
     margin: 1%;
 }
 
-main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+footer {
+    column-count: 1;
 }
 
-.bookmarks {
+.bookmarks, .topsites, .comic {
     background: rgba(0, 0, 0, 0.7);
     border: 2px solid white;
     border-radius: 5px;
-    padding-left: 1%;
-    padding-right: 1%;
+    max-width: 100%;
+    break-inside: avoid-column;
+}
+
+.bookmarks {
     margin: 1%;
-    max-width: 33%;
-    height: fit-content;
+}
+
+.news {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid white;
+    border-radius: 5px;
+    height: 5%;
+    margin: 1%;
+    padding: 0;
+}
+
+h2 {
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.news-ticker-container {
+    width: 100%;
+    overflow: hidden;
+    /* Hide scroll bar */
+}
+
+.ticker-wrap {
+    width: 100%;
+    padding-left: 100%;
+    /* Push contents to right side of screen */
+}
+
+@keyframes ticker {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.ticker-move {
+    /* Basically move items from right side of screen to left in infinite loop */
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 100%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: 180s;
+    margin: 1%;
+}
+
+.ticker-move:hover {
+    animation-play-state: paused;
+    /* Pause scroll on mouse hover */
+}
+
+/* ITEMS */
+
+.ticker-item {
+    display: inline-block;
+    /* Lay items in a horizontal line */
+    padding: 0 2rem;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.ticker-item:hover {
+    color: grey;
 }
 
 ul {
@@ -42,24 +115,6 @@ ul {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.topsites {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid white;
-    border-radius: 5px;
-    padding-left: 1%;
-    padding-right: 1%;
-    margin: 1%;
-    max-width: 33%;
-    height: fit-content;
-}
-
-.sites-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .btn {
@@ -77,42 +132,29 @@ ul {
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: grey;
     color: white;
     font-weight: 900;
 }
 
-.comic {
-    background: rgba(0, 0, 0, 0.7);
-    border: 2px solid white;
-    border-radius: 5px;
-    margin: 1%;
-    padding-left: 1%;
-    padding-right: 1%;
-    height: fit-content;
-    max-width: 33%;
-}
-
-
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%; 
+    max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
 }
 
+.comic-text {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
 @media only screen and (max-width: 900px) {
-    .bookmarks {
-        max-width: 100%;
-    }
-    .comic {
-        max-width: 100%;
-    }
-    .topsites {
-        max-width: 100%;
+    .masonary {
+        column-count: 1;
     }
 }
