@@ -27,12 +27,16 @@ footer {
     column-count: 1;
 }
 
-.bookmarks, .topsites, .comic {
+.bookmarks, .topsites, .comic, .doodle {
     background: rgba(0, 0, 0, 0.7);
     border: 2px solid white;
     border-radius: 5px;
     max-width: 100%;
     break-inside: avoid-column;
+}
+
+.doodle, .topsites {
+    margin-top: 1%
 }
 
 .bookmarks {
@@ -49,8 +53,8 @@ footer {
 }
 
 h2 {
-    margin-bottom: 1px;
-    margin-top: 1px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .news-ticker-container {
@@ -148,7 +152,7 @@ img {
     height: auto;
 }
 
-.comic-text {
+.comic-text, .doodle-text {
     padding-left: 1px;
     padding-right: 1px;
 }

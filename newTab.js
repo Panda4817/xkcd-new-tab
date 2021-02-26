@@ -1,12 +1,13 @@
 const pageBody = document.body;
-const title = pageBody.querySelector(".comic-title");
-const main = pageBody.querySelector(".comic-img");
-const footer = pageBody.querySelector(".comic-text")
-const date = pageBody.querySelector(".date")
-const bookmarkList = pageBody.querySelector(".bookmarkslist")
-const topSites = pageBody.querySelector(".sites")
-const headlines = pageBody.querySelector(".headlines")
-
+const comicTitle = pageBody.querySelector(".comic-title");
+const comicMain = pageBody.querySelector(".comic-img");
+const comicFooter = pageBody.querySelector(".comic-text");
+const date = pageBody.querySelector(".date");
+const bookmarkList = pageBody.querySelector(".bookmarkslist");
+const topSites = pageBody.querySelector(".sites");
+const headlines = pageBody.querySelector(".headlines");
+const doodleContent = pageBody.querySelector(".doodle-content");
+const doodleText = pageBody.querySelector(".doodle-text");
 const ready = (callback) => {
   if (document.readyState != "loading") callback();
   else document.addEventListener("DOMContentLoaded", callback);
@@ -42,17 +43,15 @@ const setComic = () => {
     fetch(currentUrl, {method: 'post'})
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         const lastNum = parseInt(data.num);
         const randNum = Math.floor(Math.random() * ((lastNum + 1) - firstNum)) + firstNum;
         const specificUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic?num=" +  randNum;
         fetch(specificUrl, {method: 'post'})
           .then(response => response.json())
           .then(data => {
-            console.log(data)
-            title.innerHTML = `#${data.num} - ${data.safe_title}`;
-            main.innerHTML = `<img src="${data.img}" />`;
-            footer.innerHTML = `<p>${data.alt}</p>`;
+            comicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
+            comicMain.innerHTML = `<img src="${data.img}" />`;
+            comicFooter.innerHTML = `<p>${data.alt}</p>`;
           })
           .catch(err => {
             console.log(err);
@@ -86,11 +85,10 @@ const displayMostVisited = (arr) => {
 }
 
 //Determine type of greeting depending on time of day
-function greeting() {
-  let now_time = new Date();
-  if (now_time.getHours() < 12)
+const greeting = (d) => {
+  if (d.getHours() < 12)
       return "Morning"
-  else if (now_time.getHours() >= 12 && now_time.getHours() < 17)
+  else if (d.getHours() >= 12 && d.getHours() < 17)
       return "Afternoon"
   else
       return "Evening"
@@ -100,7 +98,6 @@ const getNews = () => {
   fetch('https://extreme-ip-lookup.com/json/')
     .then(res => res.json())
     .then(response => {
-      console.log("Country: ", response.countryCode);
       const newsUrl = 'https://panda-serverless-api.netlify.app/.netlify/functions/getNews?code=' + response.countryCode;
       fetch(newsUrl, {method: 'post'})
         .then(res => res.json())
@@ -116,11 +113,26 @@ const getNews = () => {
   
 }
 
+const getDoodle = (d) => {
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  fetch(`https://panda-serverless-api.netlify.app/.netlify/functions/getDoodle?year=${year}&month=${month}`, {method: 'post'})
+    .then(res => res.json())
+    .then(data => {
+      const doodleImg = `<a href="${"https://www.google.com/doodles/" + data.name}" target="_blank">
+      <img src="${data.alternate_url}" title="${data.translations.en.hover_text}" /></a>`
+      doodleContent.innerHTML = doodleImg;
+      doodleText.innerHTML = data.share_text;
+    })
+    .catch(err => console.log(err));
+}
+
 ready(() => {
   setComic();
-  const d = new Date()
-  date.innerHTML = `Good ${greeting()}, Today is ${formatDate(d)}`;
+  getNews();
+  const d = new Date();
+  getDoodle(d);
+  date.innerHTML = `Good ${greeting(d)}, Today is ${formatDate(d)}`;
   chrome.bookmarks.getTree(nodes =>displayBookmarks(nodes));
   chrome.topSites.get(mostVisited => displayMostVisited(mostVisited));
-  getNews();
 });
