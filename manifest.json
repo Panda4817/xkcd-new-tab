@@ -1,7 +1,7 @@
 {
     "name": "xkcd new tab",
     "version": "1.0",
-    "description": "xkcd themed new tab for xkcd fans, which displays a random xkcd comic, greets you depend on local time, displays the date, has access to most visited sites and bookmarks.",
+    "description": "An informative xkcd themed new tab",
     "chrome_url_overrides": {
         "newtab": "newTab.html"
     },

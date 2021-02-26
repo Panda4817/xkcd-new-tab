@@ -1,4 +1,7 @@
 const pageBody = document.body;
+const todayComicTitle = pageBody.querySelector(".today-comic-title");
+const todayComicMain = pageBody.querySelector(".today-comic-img");
+const todayComicFooter = pageBody.querySelector(".today-comic-text");
 const comicTitle = pageBody.querySelector(".comic-title");
 const comicMain = pageBody.querySelector(".comic-img");
 const comicFooter = pageBody.querySelector(".comic-text");
@@ -43,6 +46,10 @@ const setComic = () => {
     fetch(currentUrl, {method: 'post'})
       .then(response => response.json())
       .then(data => {
+        todayComicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
+        todayComicMain.innerHTML = `<a href="https://www.explainxkcd.com/wiki/index.php/${data.num}" target="_blank">
+        <img src="${data.img}" title="Click for explanation"/></a>`;
+        todayComicFooter.innerHTML = `<p>${data.alt}</p>`;
         const lastNum = parseInt(data.num);
         const randNum = Math.floor(Math.random() * ((lastNum + 1) - firstNum)) + firstNum;
         const specificUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic?num=" +  randNum;
@@ -50,7 +57,8 @@ const setComic = () => {
           .then(response => response.json())
           .then(data => {
             comicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
-            comicMain.innerHTML = `<img src="${data.img}" />`;
+            comicMain.innerHTML = `<a href="https://www.explainxkcd.com/wiki/index.php/${data.num}" target="_blank">
+            <img src="${data.img}" title="Click for explanation"/></a>`;
             comicFooter.innerHTML = `<p>${data.alt}</p>`;
           })
           .catch(err => {
