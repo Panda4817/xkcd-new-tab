@@ -12,11 +12,6 @@ const headlines = pageBody.querySelector(".headlines");
 const doodleContent = pageBody.querySelector(".doodle-content");
 const doodleText = pageBody.querySelector(".doodle-text");
 
-// const  ready = async (callback) => {
-//   if (document.readyState != "loading") callback();
-//   else document.addEventListener("DOMContentLoaded", callback);
-// };
-
 const formatDate = (d) => {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -45,17 +40,20 @@ const formatDate = (d) => {
 const firstNum = 1;
 
 const fetchComic = async (num) => {
-  if (num === 0){
-    const currentUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic";
-    const response = await fetch(currentUrl, { method: 'post' });
-    const data = await response.json();
-    return data;
-  } else {
-    const specificUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic?num=" + num;
-    const response = await fetch(specificUrl, { method: 'post' });
-    const data = await response.json();
-    return data;
-  }
+  try {
+    if (num === 0){
+      const currentUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic";
+      const response = await fetch(currentUrl, { method: 'post' });
+      const data = await response.json();
+      return data;
+    } else {
+      const specificUrl = "https://panda-serverless-api.netlify.app/.netlify/functions/getComic?num=" + num;
+      const response = await fetch(specificUrl, { method: 'post' });
+      const data = await response.json();
+      return data;
+    } 
+  } catch(err) { console.log(err);}
+  
 }
 
 const setLatestComic = (d, callback) => {
@@ -79,12 +77,15 @@ const setLatestComic = (d, callback) => {
 }
 
 const setRandomComic = async (lastNum) => {
-  const randNum = Math.floor(Math.random() * ((lastNum + 1) - firstNum)) + firstNum;
-  const data = await fetchComic(randNum);
-  comicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
-  comicMain.innerHTML = `<a href="https://www.explainxkcd.com/wiki/index.php/${data.num}" target="_blank">
-  <img src="${data.img}" title="Click for explanation"/></a>`;
-  comicFooter.innerHTML = `<p>${data.alt}</p>`;
+  try {
+    const randNum = Math.floor(Math.random() * ((lastNum + 1) - firstNum)) + firstNum;
+    const data = await fetchComic(randNum);
+    comicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
+    comicMain.innerHTML = `<a href="https://www.explainxkcd.com/wiki/index.php/${data.num}" target="_blank">
+    <img src="${data.img}" title="Click for explanation"/></a>`;
+    comicFooter.innerHTML = `<p>${data.alt}</p>`;
+  }catch(err) {console.log(err);}
+  
 }
 
 const displayBookmarks = (nodes) => {
@@ -152,11 +153,11 @@ const getNews = (callback) => {
                 return `<a class="ticker-item" style="color: black" href="${news.url}" target="_blank">${news.title}</a>`;
               }).join("");
               headlines.innerHTML = headlinesList;
-              callback()
+              callback();
             })
             .catch(err => console.log(err));
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     } else {
       pageBody.querySelector(".news").style.display = 'none';
     }
@@ -164,11 +165,14 @@ const getNews = (callback) => {
 }
 
 const fetchDoodle = async (d) => {
-  const year = d.getFullYear();
-  const month = d.getMonth() + 1;
-  const response = await fetch(`https://panda-serverless-api.netlify.app/.netlify/functions/getDoodle?year=${year}&month=${month}`, { method: 'post' });
-  const data = response.json();
-  return data;
+  try {
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const response = await fetch(`https://panda-serverless-api.netlify.app/.netlify/functions/getDoodle?year=${year}&month=${month}`, { method: 'post' });
+    const data = response.json();
+    return data;
+  }catch(err){console.log(err);}
+  
 }
 
 const getDoodle = (d) => {
@@ -201,7 +205,6 @@ const getDoodle = (d) => {
 
 const checkStorage = (key, fn) => {
   chrome.storage.sync.get(key, (result) => {
-    console.log(result)
     fn(result[key]);
   });
 }

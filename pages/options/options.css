@@ -58,5 +58,17 @@ button {
 
 footer {
     text-align: center;
-    margin: 1%
+    margin: 1%;
+}
+
+.a_dark {
+    color: white;
+}
+
+a:hover {
+    color: grey;
+}
+
+.a_light {
+    color: black;
 }

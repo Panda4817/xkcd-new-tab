@@ -46,11 +46,15 @@ const setTheme = () => {
             document.querySelector('.section').classList.remove("light_section");
             document.querySelector('body').classList.add("dark_body");
             document.querySelector('.section').classList.add("dark_section");
+            document.querySelector('a').classList.add("a_dark");
+            document.querySelector('a').classList.remove("a_light");
         } else {
             document.querySelector('body').classList.remove("dark_body");
             document.querySelector('.section').classList.remove("dark_section");
             document.querySelector('body').classList.add("light_body");
             document.querySelector('.section').classList.add("light_section");
+            document.querySelector('a').classList.remove("a_dark");
+            document.querySelector('a').classList.add("a_light");
         }
 
     });
