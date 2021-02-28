@@ -10,3 +10,5 @@ A chrome extension that replaces your new tab with a xkcd themed tab.
 - Latest Google Doodle
 - Most visited sites
 - All bookmarks
+- Options to choose what you see on the new tab
+- Choose between dark and light theme

@@ -2,7 +2,7 @@
 
 body {
     min-width:300px;
-    background-image: url('./images/background.jpg');
+    background-image: url('../../images/background.jpg');
     background-repeat: repeat;
     background-size: 25%;
     color: white;
@@ -11,8 +11,24 @@ body {
     font-weight: bold;
 }
 
+.dark_body {
+    background-image: url('../../images/background.jpg');
+    color: white;
+}
+.light_body {
+    background-image: url('../../images/background_light.jpg');
+    color: black;
+    font-weight: bolder;
+}
+
+.dark_text {
+    color: white;
+}
+.light_text {
+    color: black;
+}
+
 a {
-    text-decoration: none;
     font-weight: bolder;
     color: white;
 }

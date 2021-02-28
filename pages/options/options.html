@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xkcd new tab options</title>
+    <link rel="stylesheet" href="options.css" />
+</head>
+
+<body class="dark_body">
+    <header>
+        <h1>xkcd new tab extension options</h1> 
+    </header>
+    <main class="section dark_section">
+        <div class="flex-container">
+            <div class="flex-item">
+                <h2>Choose what to see in your new tab:</h2>
+                <input type="checkbox" id="news" name="news" value="news" checked>
+                <label for="news">News Headlines</label><br>
+                <input type="checkbox" id="doodle" name="doodle" value="doodle" checked>
+                <label for="doodle">Latest Google Doodle</label><br>
+                <input type="checkbox" id="bookmarks" name="bookmarks" value="bookmarks" checked>
+                <label for="bookmarks">All Bookmarks</label><br>
+                <input type="checkbox" id="topsites" name="topsites" value="topsites" checked>
+                <label for="topsites">Most Visited Sites</label><br><br>
+            </div>
+            <div class="flex-item">
+                <h2>Choose a theme:</h2>
+                <input type="radio" id="dark" name="theme" value="dark" checked>
+                <label for="dark">Dark</label><br>
+                <input type="radio" id="light" name="theme" value="light">
+                <label for="dark">Light</label><br>   
+            </div>
+        </div>
+        <button id="submit">Save</button>  
+    </main>
+    <footer>
+        Created by KMunton ©️ <span id="year"></span>
+    </footer>
+    
+</body>
+<script src="options.js"></script>
+</html>
