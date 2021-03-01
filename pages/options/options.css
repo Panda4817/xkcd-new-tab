@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url("../../fonts/fonts.css");
 body {
     background-repeat: repeat;
     background-size: 50%;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One';
     max-height: 100vh;
 }
 .dark_body {
