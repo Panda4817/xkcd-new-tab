@@ -70,7 +70,7 @@ const setLatestComic = (d, callback) => {
     }
     todayComicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
     todayComicMain.innerHTML = `<a href="https://www.explainxkcd.com/wiki/index.php/${data.num}" target="_blank">
-    <img src="${data.img}" title="Click for explanation"/></a>`;
+    <img src="${data.img}" title="Click for explanation" alt="${data.alt}"/></a>`;
     todayComicFooter.innerHTML = `<p>${data.alt}</p>`;
     callback(data.num);
   })
@@ -82,28 +82,31 @@ const setRandomComic = async (lastNum) => {
     const data = await fetchComic(randNum);
     comicTitle.innerHTML = `#${data.num} - ${data.safe_title}`;
     comicMain.innerHTML = `<a href="https://www.explainxkcd.com/wiki/index.php/${data.num}" target="_blank">
-    <img src="${data.img}" title="Click for explanation"/></a>`;
+    <img src="${data.img}" title="Click for explanation" alt="${data.alt}"/></a>`;
     comicFooter.innerHTML = `<p>${data.alt}</p>`;
   }catch(err) {console.log(err);}
   
 }
 
-const displayBookmarks = (nodes) => {
+const displayBookmarks = () => {
   checkStorage("bookmarks", (display) => {
     if (display) {
-      pageBody.querySelector(".bookmarks").style.display = 'block';
-      const bookmarks = nodes.map(tree => {
-        let folders = tree.children;
-        str = '';
-        for (let i = 0; i < folders.length; i++) {
-          let arr = folders[i].children;
-          for (let j = 0; j < arr.length; j++) {
-            str += `<li><a class="btn dark_btn" href="${arr[j].url}" target="_blank">${arr[j].title}</a></li>`;
+      chrome.bookmarks.getTree(nodes => {
+        pageBody.querySelector(".bookmarks").style.display = 'block';
+        const bookmarks = nodes.map(tree => {
+          let folders = tree.children;
+          str = '';
+          for (let i = 0; i < folders.length; i++) {
+            let arr = folders[i].children;
+            for (let j = 0; j < arr.length; j++) {
+              str += `<li><a class="btn dark_btn" href="${arr[j].url}" target="_blank">${arr[j].title}</a></li>`;
+            }
           }
-        }
-        return str;
-      }).join('')
-      bookmarkList.innerHTML = bookmarks;
+          return str;
+        }).join('')
+        bookmarkList.innerHTML = bookmarks;
+      });
+      
     } else {
       pageBody.querySelector(".bookmarks").style.display = 'none';
     }
@@ -112,16 +115,19 @@ const displayBookmarks = (nodes) => {
 
 }
 
-const displayMostVisited = (arr) => {
-  checkStorage("topsites", (display) => {
+const displayMostVisited = () => {
+  checkStorage("topSites", (display) => {
     if (display) {
-      pageBody.querySelector(".topsites").style.display = 'block';
-      const sites = arr.map(site => {
-        return `<li><a class="btn dark_btn" href="${site.url}" target="_blank">${site.title}</a></li>`;
-      }).join('');
-      topSites.innerHTML = sites;
+      chrome.topSites.get(arr => {
+        pageBody.querySelector(".topSites").style.display = 'block';
+        const sites = arr.map(site => {
+          return `<li><a class="btn dark_btn" href="${site.url}" target="_blank">${site.title}</a></li>`;
+        }).join('');
+        topSites.innerHTML = sites;
+      });
+      
     } else {
-      pageBody.querySelector(".topsites").style.display = 'none';
+      pageBody.querySelector(".topSites").style.display = 'none';
     }
   });
 
@@ -191,7 +197,7 @@ const getDoodle = (d) => {
           chrome.storage.sync.set({"doodle_data": {"date": new Date().toDateString(), "data": data}})
         }
         const doodleImg = `<a href="${"https://www.google.com/doodles/" + data.name}" target="_blank">
-        <img src="${data.alternate_url}" title="${data.translations.en.hover_text}" /></a>`
+        <img src="${data.alternate_url}" title="${data.translations.en.hover_text}" alt="${data.share_text}" /></a>`
         doodleContent.innerHTML = doodleImg;
         doodleText.innerHTML = data.share_text;
       })
@@ -253,9 +259,9 @@ const setTheme = () => {
 document.addEventListener("DOMContentLoaded", async () => {
   const d = new Date();
   date.innerHTML = `Good ${greeting(d)}, Today is ${formatDate(d)}`;
-  chrome.bookmarks.getTree(nodes => displayBookmarks(nodes));
-  chrome.topSites.get(mostVisited => displayMostVisited(mostVisited));
   getDoodle(d);
+  displayBookmarks();
+  displayMostVisited();
   await setLatestComic(d, (lastNum) => {
     setRandomComic(lastNum);
   });

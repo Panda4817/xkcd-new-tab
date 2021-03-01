@@ -1,4 +1,4 @@
-const keys = ["news", "bookmarks", "topsites", "doodle"];
+const keys = ["news", "bookmarks", "topSites", "doodle"];
 const ready = (callback) => {
     if (document.readyState != "loading") callback();
     else document.addEventListener("DOMContentLoaded", callback);
@@ -23,12 +23,33 @@ const restore_options = async () => {
 }
 
 const save_options = () => {
-    keys.map(key => {
+    keys.map(async key => {
         let value = document.getElementById(key).checked;
         let obj = {};
         obj[key] = value;
-        chrome.storage.sync.set(obj);
-        console.log(obj)
+        if (key == 'topSites' || key == 'bookmarks') {
+            if (value == false) {
+                    await chrome.permissions.remove({ permissions: [key] }, function (removed) {
+                        if (removed) {
+                            chrome.storage.sync.set(obj);
+                        } else {
+                            document.getElementById(key).checked = true;
+                        }
+                    });
+                } else {
+                    await chrome.permissions.request({ permissions: [key] }, function (granted) {
+                        if (granted) {
+                            chrome.storage.sync.set(obj);
+                        } else {
+                            document.getElementById(key).checked = false;
+                        }
+                    });
+                }
+        } else {
+            chrome.storage.sync.set(obj);
+            console.log(obj);
+        }
+        return;
     });
     const theme = document.querySelector('input[name="theme"]:checked').value;
     if (theme === "dark") {
@@ -36,7 +57,6 @@ const save_options = () => {
     } else {
         chrome.storage.sync.set({ "dark": false });
     }
-    window.alert("Your options are saved and if a new tab is already open it has been reloaded.");
 }
 
 const setTheme = () => {

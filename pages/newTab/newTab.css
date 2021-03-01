@@ -50,13 +50,13 @@ footer {
     column-count: 1;
 }
 
-.bookmarks, .topsites, .comic, .doodle {
+.bookmarks, .topSites, .comic, .doodle {
     border-radius: 5px;
     max-width: 100%;
     break-inside: avoid-column;
 }
 
-.doodle, .topsites, .comic  {
+.doodle, .topSites, .comic  {
     margin-top: 1%
 }
 

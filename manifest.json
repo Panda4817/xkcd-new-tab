@@ -5,12 +5,8 @@
     "chrome_url_overrides": {
         "newtab": "pages/newTab/newTab.html"
     },
-    "permissions": [
-        "bookmarks",
-        "topSites",
-        "storage",
-        "tabs"
-    ],
+    "permissions": [ "storage", "tabs" ],
+    "optional_permissions": [ "bookmarks", "topSites" ],
     "action": {
         "default_icon": {
             "16": "images/icon16.png",
