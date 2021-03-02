@@ -1,11 +1,11 @@
 {
-    "name": "xkcd new tab",
+    "name": "New Tab - xkcd comics theme",
     "version": "1.0",
     "description": "An xkcd themed new tab featuring comics from xkcd.com, news headlines, latest Google doodle and your top sites and bookmarks.",
     "chrome_url_overrides": {
         "newtab": "pages/newTab/newTab.html"
     },
-    "permissions": [ "storage", "tabs" ],
+    "permissions": [ "storage", "tabs", "alarms" ],
     "optional_permissions": [ "bookmarks", "topSites" ],
     "action": {
         "default_icon": {
@@ -25,7 +25,7 @@
         "128": "images/icon128.png"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background-wrapper.js"
     },
     "manifest_version": 3
 }
