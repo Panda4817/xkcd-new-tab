@@ -2,7 +2,7 @@ chrome.runtime.onInstalled.addListener(async function () {
     const keys = ["news", "doodle", "topSites", "bookmarks", "dark"];
     await chrome.alarms.clearAll();
     await chrome.storage.sync.clear();
-    await chrome.alarms.create('checkDay', {delayInMinutes: 1, periodInMinutes: 1});
+    await chrome.alarms.create('checkDay', {periodInMinutes: 60});
     keys.map((key) => {
         chrome.storage.sync.get(key, function (result) {
             if (!result[key]) {
@@ -34,13 +34,10 @@ const reloadNewTab = async () => {
 }
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
-    console.log(alarm);
     chrome.storage.sync.get('latestComic', function (value) {
         let now = new Date().toDateString();
         if (value['latestComic']["date"] != now) {
             reloadNewTab();
-        } else {
-            console.log(value,"up-to-date");
         }
     });
 });
