@@ -175,9 +175,17 @@ const fetchDoodle = async (d) => {
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
     const response = await fetch(`https://panda-serverless-api.netlify.app/.netlify/functions/getDoodle?year=${year}&month=${month}`, { method: 'post' });
-    const data = response.json();
-    return data;
-  }catch(err){console.log(err);}
+    try{
+      const data = await response.json();
+      return data;
+    }catch(err){
+      const response = await fetch(`https://panda-serverless-api.netlify.app/.netlify/functions/getDoodle?year=${year}&month=${month - 1}`, { method: 'post' });
+      const data = await response.json();
+      return data;
+    }
+  }catch(err){
+    console.log(err)
+  }
   
 }
 
