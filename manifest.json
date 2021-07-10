@@ -1,7 +1,7 @@
 {
 	"name": "New Tab - xkcd comics theme",
 	"version": "1.2",
-	"description": "An xkcd themed new tab featuring comics from xkcd.com, news headlines, latest Google doodle, a random dad joke and your top sites and bookmarks.",
+	"description": "An xkcd themed new tab featuring comics from xkcd.com and other cool features.",
 	"chrome_url_overrides": {
 		"newtab": "pages/newTab/newTab.html"
 	},
