@@ -1,31 +1,31 @@
 {
-    "name": "New Tab - xkcd comics theme",
-    "version": "1.01",
-    "description": "An xkcd themed new tab featuring comics from xkcd.com, news headlines, latest Google doodle and your top sites and bookmarks.",
-    "chrome_url_overrides": {
-        "newtab": "pages/newTab/newTab.html"
-    },
-    "permissions": [ "storage", "tabs", "alarms" ],
-    "optional_permissions": [ "bookmarks", "topSites" ],
-    "action": {
-        "default_icon": {
-            "16": "images/icon16.png",
-            "32": "images/icon32.png",
-            "48": "images/icon48.png",
-            "128": "images/icon128.png"
-        },
-        "default_title": "xkcd new tab",
-        "default_popup": "pages/popup/popup.html"
-    },
-    "options_page": "pages/options/options.html",
-    "icons": {
-        "16": "images/icon16.png",
-        "32": "images/icon32.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
-    },
-    "background": {
-        "service_worker": "background-wrapper.js"
-    },
-    "manifest_version": 3
+	"name": "New Tab - xkcd comics theme",
+	"version": "1.2",
+	"description": "An xkcd themed new tab featuring comics from xkcd.com, news headlines, latest Google doodle, a random dad joke and your top sites and bookmarks.",
+	"chrome_url_overrides": {
+		"newtab": "pages/newTab/newTab.html"
+	},
+	"permissions": ["storage", "tabs", "alarms"],
+	"optional_permissions": ["bookmarks", "topSites"],
+	"action": {
+		"default_icon": {
+			"16": "images/icon16.png",
+			"32": "images/icon32.png",
+			"48": "images/icon48.png",
+			"128": "images/icon128.png"
+		},
+		"default_title": "xkcd new tab",
+		"default_popup": "pages/popup/popup.html"
+	},
+	"options_page": "pages/options/options.html",
+	"icons": {
+		"16": "images/icon16.png",
+		"32": "images/icon32.png",
+		"48": "images/icon48.png",
+		"128": "images/icon128.png"
+	},
+	"background": {
+		"service_worker": "background-wrapper.js"
+	},
+	"manifest_version": 3
 }

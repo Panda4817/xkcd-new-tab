@@ -50,17 +50,22 @@ footer {
     column-count: 1;
 }
 
-.bookmarks, .topSites, .comic, .doodle {
+.bookmarks, .topSites, .comic, .doodle, .joke, .options {
     border-radius: 5px;
     max-width: 100%;
     break-inside: avoid-column;
 }
 
-.doodle, .topSites, .comic  {
+.doodle, .topSites, .comic, .joke, .options  {
     margin-top: 1%
 }
 
-.bookmarks {
+.joke-text {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.bookmarks, .options {
     margin: 1%;
 }
 
@@ -189,4 +194,12 @@ img {
     .masonary {
         column-count: 1;
     }
+}
+
+a {
+    font-weight: bolder;
+    color: white;
+}
+a:hover{
+    color: grey
 }

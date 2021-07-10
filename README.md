@@ -8,6 +8,7 @@ A chrome extension that replaces your new tab with a xkcd themed tab.
 - Ticker tape news headlines specific to your country via the News API
 - Latest xkcd comic
 - Random xkcd comic
+- Random dad joke fro icanhazdadjoke API
 - Latest Google Doodle via the Google Doodle API
 - Most visited sites
 - All bookmarks

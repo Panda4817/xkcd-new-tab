@@ -1,44 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>xkcd new tab options</title>
+		<link rel="stylesheet" href="options.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>xkcd new tab options</title>
-    <link rel="stylesheet" href="options.css" />
-</head>
+	<body class="dark_body">
+		<header>
+			<h1>xkcd new tab extension options</h1>
+		</header>
+		<main class="section dark_section">
+			<div class="flex-container">
+				<div class="flex-item">
+					<h2>Choose what to see in your new tab:</h2>
 
-<body class="dark_body">
-    <header>
-        <h1>xkcd new tab extension options</h1> 
-    </header>
-    <main class="section dark_section">
-        <div class="flex-container">
-            <div class="flex-item">
-                <h2>Choose what to see in your new tab:</h2>
-                <input type="checkbox" id="news" name="news" value="news" checked>
-                <label for="news">News Headlines</label><br>
-                <input type="checkbox" id="doodle" name="doodle" value="doodle" checked>
-                <label for="doodle">Latest Google Doodle</label><br>
-                <input type="checkbox" id="bookmarks" name="bookmarks" value="bookmarks" checked>
-                <label for="bookmarks">All Bookmarks</label><br>
-                <input type="checkbox" id="topSites" name="topSites" value="topSites" checked>
-                <label for="topSites">Most Visited Sites</label><br><br>
-            </div>
-            <div class="flex-item">
-                <h2>Choose a theme:</h2>
-                <input type="radio" id="dark" name="theme" value="dark" checked>
-                <label for="dark">Dark</label><br>
-                <input type="radio" id="light" name="theme" value="light">    
-                <label for="light">Light</label><br>   
-            </div>
-        </div>
-        <button id="submit">Save</button>  
-    </main>
-    <footer>
-        Comics from <a class="a_dark" href="https://xkcd.com/" target="_blank">xkcd.com</a>, Created  with ♥ by Panda4817 ©️ <span id="year"></span>
-    </footer>
-    
-</body>
-<script src="options.js"></script>
+					<input
+						type="checkbox"
+						id="news"
+						name="news"
+						value="news"
+						checked
+					/>
+					<label for="news">News Headlines</label><br />
+
+					<input
+						type="checkbox"
+						id="doodle"
+						name="doodle"
+						value="doodle"
+						checked
+					/>
+					<label for="doodle">Latest Google Doodle</label
+					><br />
+
+					<input
+						type="checkbox"
+						id="joke"
+						name="joke"
+						value="joke"
+						checked
+					/>
+					<label for="joke">Dad jokes</label><br />
+
+					<input
+						type="checkbox"
+						id="bookmarks"
+						name="bookmarks"
+						value="bookmarks"
+						checked
+					/>
+					<label for="bookmarks">All Bookmarks</label><br />
+
+					<input
+						type="checkbox"
+						id="topSites"
+						name="topSites"
+						value="topSites"
+						checked
+					/>
+					<label for="topSites">Most Visited Sites</label
+					><br /><br />
+				</div>
+				<div class="flex-item">
+					<h2>Choose a theme:</h2>
+					<input
+						type="radio"
+						id="dark"
+						name="theme"
+						value="dark"
+						checked
+					/>
+					<label for="dark">Dark</label><br />
+					<input
+						type="radio"
+						id="light"
+						name="theme"
+						value="light"
+					/>
+					<label for="light">Light</label><br />
+				</div>
+			</div>
+			<button id="submit">Save</button>
+		</main>
+		<footer>
+			Comics from
+			<a
+				class="a_dark"
+				href="https://xkcd.com/"
+				target="_blank"
+				>xkcd.com</a
+			>, Created with ♥ by Panda4817 ©️
+			<span id="year"></span>
+		</footer>
+	</body>
+	<script src="options.js"></script>
 </html>

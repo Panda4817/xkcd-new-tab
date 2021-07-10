@@ -1,57 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>New tab</title>
+		<link rel="stylesheet" href="newTab.css" />
+	</head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New tab</title>
-  <link rel="stylesheet" href="newTab.css" />
-</head>
+	<body class="pageBody dark_body">
+		<header
+			class="dark_section section"
+			aria-live="assertive"
+			aria-atomic="true"
+		>
+			<h1 class="date"></h1>
+		</header>
+		<main>
+			<section
+				class="news dark_section section"
+				style="display: block"
+				aria-live="assertive"
+				aria-atomic="true"
+			>
+				<h2>News Headlines</h2>
+				<div class="news-ticker-container">
+					<div class="ticker-wrap">
+						<div class="ticker-move headlines"></div>
+					</div>
+				</div>
+			</section>
+			<div class="masonary">
+				<section
+					class="joke dark_section section"
+					style="display: block"
+					aria-live="assertive"
+					aria-atomic="true"
+				>
+					<h2 class="joke-text"></h2>
+				</section>
+				<section
+					class="comic dark_section section"
+					style="display: block"
+					aria-live="assertive"
+					aria-atomic="true"
+				>
+					<h2 class="today-comic-title"></h2>
+					<section class="today-comic-img"></section>
+					<h3 class="today-comic-text"></h3>
+				</section>
+				<section
+					class="doodle dark_section section"
+					style="display: block"
+					aria-live="assertive"
+					aria-atomic="true"
+				>
+					<h2>Latest Doodle</h2>
+					<div class="doodle-content"></div>
+					<h3 class="doodle-text"></h3>
+				</section>
+				<section
+					class="comic dark_section section"
+					style="display: block"
+					aria-live="assertive"
+					aria-atomic="true"
+				>
+					<h2 class="comic-title"></h2>
+					<section class="comic-img"></section>
+					<h3 class="comic-text"></h3>
+				</section>
+				<section
+					class="topSites dark_section section"
+					style="display: block"
+					aria-live="assertive"
+					aria-atomic="true"
+				>
+					<h2>Most Visited Sites</h2>
+					<ul class="sites links"></ul>
+				</section>
+			</div>
+		</main>
+		<footer>
+			<section
+				class="bookmarks dark_section section"
+				style="display: block"
+				aria-live="assertive"
+				aria-atomic="true"
+			>
+				<h2>My Bookmarks</h2>
+				<ul class="bookmarkslist links"></ul>
+			</section>
+			<section
+				class="options dark_section section"
+				style="display: block"
+				aria-live="assertive"
+				aria-atomic="true"
+			>
+				<p>
+					To change what you see on the new tab, go to
+					<a href="../options/options.html" target="_blank"
+						>options</a
+					>
+				</p>
+			</section>
+		</footer>
 
-<body class="pageBody dark_body">
-  <header class="dark_section section" aria-live="assertive" aria-atomic="true">
-    <h1 class="date"></h1>
-  </header>
-  <main>
-    <section class="news dark_section section" style="display: block;" aria-live="assertive" aria-atomic="true">
-      <h2>News Headlines</h2>
-      <div class="news-ticker-container">
-        <div class="ticker-wrap">
-          <div class="ticker-move headlines"></div>
-        </div>
-      </div>
-    </section>
-    <div class='masonary'>
-      <section class="comic dark_section section" style="display: block;" aria-live="assertive" aria-atomic="true">
-        <h2 class="today-comic-title"></h2>
-        <section class="today-comic-img"></section>
-        <h3 class="today-comic-text"></h3>
-      </section>
-      <section class="doodle dark_section section" style="display: block;" aria-live="assertive" aria-atomic="true">
-        <h2>Latest Doodle</h2>
-        <div class="doodle-content"></div>
-        <h3 class="doodle-text"></h3>
-      </section>
-      <section class="comic dark_section section" style="display: block;" aria-live="assertive" aria-atomic="true">
-        <h2 class="comic-title"></h2>
-        <section class="comic-img"></section>
-        <h3 class="comic-text"></h3>
-      </section>
-      <section class="topSites dark_section section" style="display: block;" aria-live="assertive" aria-atomic="true">
-        <h2>Most Visited Sites</h2>
-        <ul class="sites links"></ul>
-      </section>
-    </div>
-
-  </main>
-  <footer>
-    <section class="bookmarks dark_section section" style="display: block;" aria-live="assertive" aria-atomic="true">
-      <h2>My Bookmarks</h2>
-      <ul class="bookmarkslist links"></ul>
-    </section>
-  </footer>
-
-  <script src="newTab.js"></script>
-</body>
-
+		<script src="newTab.js"></script>
+	</body>
 </html>
